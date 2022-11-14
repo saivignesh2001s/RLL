@@ -1,0 +1,144 @@
+﻿@model PROD.Models.CAR
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to remove this car?</h3>
+@*<div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Carid)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Carid)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Carname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Carname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CarType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CarType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PerDayCharge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PerDayCharge)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChargePerKm)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChargePerKm)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Available)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Available)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Remove" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+        }
+    </div>*@
+<div style="float:left">
+    <img src="@Url.Content(@Model.Photo)" width:"100px" height:"200px">
+
+</div>
+
+
+<div style="margin-left:600px">
+    <table class="table table-responsive table-striped">
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Carid)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Carid)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Carname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Carname)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CarType)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CarType)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.PerDayCharge)</td>
+            <td>@Html.DisplayFor(model => model.PerDayCharge)</td>
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ChargePerKm)</td>
+            <td>@Html.DisplayFor(model => model.ChargePerKm)</td>
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Available)</td>
+            <td>@Html.DisplayFor(model => model.Available)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.Photo)</td>
+            <td> @Html.DisplayFor(model => model.Photo)</td>
+
+        </tr>
+
+
+
+
+
+    </table>
+    <p>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Remove" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info btn-large" })
+            </div>
+        }
+
+    </p>
+
+</div>
+

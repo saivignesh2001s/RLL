@@ -1,0 +1,106 @@
+﻿@model PROD.Models.CARRENT
+
+@{
+    ViewBag.Title = "Cancel";
+}
+
+<h2>Cancel</h2>
+
+<h3>Are you sure you want to Cancel this rent?</h3>
+<div>
+
+    <hr />
+    <div style="float:left">
+        <img src="@Url.Content(@ViewBag.image)" width:"100px" height:"200px">
+
+    </div>
+
+
+    <div style="margin-left:600px">
+        <table class="table table-responsive table-striped">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.RentId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.RentId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CarId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.CarId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CustomerId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.CustomerId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.RentOrderDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.RentOrderDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.OdoReading)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.OdoReading)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.ReturnDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.ReturnDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.ReturnOdoReading)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.ReturnOdoReading)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.LicenseNumber)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.LicenseNumber)
+                </td>
+            </tr>
+        </table>
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Cancel" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Search", null, new { @class = "btn btn-info btn-large" })
+                </div>
+            }
+        </div>
+          
+    </div>

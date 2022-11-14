@@ -1,0 +1,66 @@
+﻿@model PROD.Models.Cost
+
+@{
+    ViewBag.Title = "ApplyDiscount10";
+}
+
+<h2>ApplyDiscount10</h2>
+
+<div>
+    <h4>Cost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rentid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rentid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KmsCovered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KmsCovered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Cash", "Successful")
+    @Html.ActionLink("Card", "Successful")
+    @Html.ActionLink("NetBanking", "Successful")
+</p>
+<p style="color:red">
+    @ViewBag.Message4
+</p>
+<p style="color:green">
+    @ViewBag.Message5
+</p>
+

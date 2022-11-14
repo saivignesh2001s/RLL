@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PROD.Models.CARRENT>
+
+@{
+    ViewBag.Title = "Pastrentals";
+}
+
+<h2>Pastrentals</h2>
+
+<p>
+@Html.ActionLink("Pastrentals", "Pastrentals", null, new { @class = "btn btn-info btn-large" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentOrderDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OdoReading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnOdoReading)
+        </th>
+
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentOrderDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdoReading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnOdoReading)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Search Page", "Search", null, new { @class = "btn btn-primary " })
+</p>

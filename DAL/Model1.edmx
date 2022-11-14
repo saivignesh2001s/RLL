@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Carid" />
+          </Key>
+          <Property Name="Carid" Type="int" Nullable="false" />
+          <Property Name="Carname" Type="nvarchar" MaxLength="40" />
+          <Property Name="CarType" Type="nvarchar" MaxLength="40" />
+          <Property Name="PerDayCharge" Type="int" />
+          <Property Name="ChargePerKm" Type="int" />
+          <Property Name="Available" Type="nchar" MaxLength="10" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CarRent">
+          <Key>
+            <PropertyRef Name="RentId" />
+          </Key>
+          <Property Name="RentId" Type="int" Nullable="false" />
+          <Property Name="CarId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="RentOrderDate" Type="date" />
+          <Property Name="OdoReading" Type="int" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnOdoReading" Type="int" />
+          <Property Name="Licensenumber" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customerid" />
+          </Key>
+          <Property Name="Customerid" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="30" />
+          <Property Name="mail" Type="nvarchar" MaxLength="40" />
+          <Property Name="Password" Type="nvarchar" MaxLength="25" />
+          <Property Name="LoyaltyPoints" Type="int" />
+        </EntityType>
+        <Association Name="fk_rentcar">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="CarRent" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Carid" />
+            </Principal>
+            <Dependent Role="CarRent">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rentCustomer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="CarRent" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customerid" />
+            </Principal>
+            <Dependent Role="CarRent">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRentalModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarRent" EntityType="Self.CarRent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_rentcar" Association="Self.fk_rentcar">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="CarRent" EntitySet="CarRent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rentCustomer" Association="Self.fk_rentCustomer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CarRent" EntitySet="CarRent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Carid" />
+          </Key>
+          <Property Name="Carid" Type="Int32" Nullable="false" />
+          <Property Name="Carname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CarType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PerDayCharge" Type="Int32" />
+          <Property Name="ChargePerKm" Type="Int32" />
+          <NavigationProperty Name="CarRents" Relationship="Self.fk_rentcar" FromRole="Car" ToRole="CarRent" />
+          <Property Name="Available" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CarRent">
+          <Key>
+            <PropertyRef Name="RentId" />
+          </Key>
+          <Property Name="RentId" Type="Int32" Nullable="false" />
+          <Property Name="CarId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="RentOrderDate" Type="DateTime" Precision="0" />
+          <Property Name="OdoReading" Type="Int32" />
+          <NavigationProperty Name="Car" Relationship="Self.fk_rentcar" FromRole="CarRent" ToRole="Car" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_rentCustomer" FromRole="CarRent" ToRole="Customer" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnOdoReading" Type="Int32" />
+          <Property Name="Licensenumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customerid" />
+          </Key>
+          <Property Name="Customerid" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LoyaltyPoints" Type="Int32" />
+          <NavigationProperty Name="CarRents" Relationship="Self.fk_rentCustomer" FromRole="Customer" ToRole="CarRent" />
+        </EntityType>
+        <Association Name="fk_rentcar">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="CarRent" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Carid" />
+            </Principal>
+            <Dependent Role="CarRent">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rentCustomer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="CarRent" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customerid" />
+            </Principal>
+            <Dependent Role="CarRent">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRentalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="CarRents" EntityType="Self.CarRent" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <AssociationSet Name="fk_rentcar" Association="Self.fk_rentcar">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="CarRent" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rentCustomer" Association="Self.fk_rentCustomer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CarRent" EntitySet="CarRents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarRentalModelStoreContainer" CdmEntityContainer="CarRentalEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="CarRentalModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarRentalModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Carid" ColumnName="Carid" />
+                <ScalarProperty Name="Carname" ColumnName="Carname" />
+                <ScalarProperty Name="CarType" ColumnName="CarType" />
+                <ScalarProperty Name="PerDayCharge" ColumnName="PerDayCharge" />
+                <ScalarProperty Name="ChargePerKm" ColumnName="ChargePerKm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarRents">
+            <EntityTypeMapping TypeName="CarRentalModel.CarRent">
+              <MappingFragment StoreEntitySet="CarRent">
+                <ScalarProperty Name="Licensenumber" ColumnName="Licensenumber" />
+                <ScalarProperty Name="ReturnOdoReading" ColumnName="ReturnOdoReading" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="RentId" ColumnName="RentId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="RentOrderDate" ColumnName="RentOrderDate" />
+                <ScalarProperty Name="OdoReading" ColumnName="OdoReading" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CarRentalModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Customerid" ColumnName="Customerid" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoyaltyPoints" ColumnName="LoyaltyPoints" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

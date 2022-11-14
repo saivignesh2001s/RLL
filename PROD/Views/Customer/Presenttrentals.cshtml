@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PROD.Models.CARRENT>
+
+@{
+    ViewBag.Title = "Presenttrentals";
+}
+
+<h2>PresentRentals</h2>
+<p>
+@Html.ActionLink("Furtherrentals", "Presenttrentals", null, new { @class = "btn btn-info btn-large" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentOrderDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentOrderDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            @if (item.RentOrderDate == DateTime.Today)
+            {
+                if (item.OdoReading is null)
+                {
+                    <td>
+
+                        @Html.ActionLink("Rentnow", "Rentnow", new { id = item.RentId }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Cancel", "Cancel", new { id = item.RentId }, new { @class = "btn btn-primary" })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Return", "Return", new { id = item.RentId }, new { @class = "btn btn-primary" })
+                    </td>
+                }
+            }
+            else if (item.RentOrderDate >= DateTime.Today)
+            {
+                <td>
+                    @Html.ActionLink("Cancel", "Cancel", new { id = item.RentId }, new { @class = "btn btn-primary" })
+                </td>
+            }
+            else
+            {
+
+                <td>
+                    @Html.ActionLink("Return", "Return", new { id = item.RentId }, new { @class = "btn btn-primary" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Search Page", "Search", null, new { @class = "btn btn-primary " })
+</p>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PROD.Models.CAR>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br/>
+
+<h2>Car List || @Html.ActionLink("Employeelist", "EmpIndex")</h2>
+
+<p>
+    @Html.ActionLink("Add Car", "Create", null, new { @class = "btn btn-primary btn-large" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Carid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerDayCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChargePerKm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerDayCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChargePerKm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Carid }, new {@class="btn btn-primary"}) |
+                @Html.ActionLink("Details", "Details", new { id = item.Carid }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Carid }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

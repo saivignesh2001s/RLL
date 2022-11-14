@@ -1,0 +1,68 @@
+﻿@model PROD.Models.CAR
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div style="float:left;">
+    <table class="table table-responsive table-striped">
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Carid)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Carid)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Carname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Carname)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CarType)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CarType)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.PerDayCharge)</td>
+            <td>@Html.DisplayFor(model => model.PerDayCharge)</td>
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ChargePerKm)</td>
+            <td>@Html.DisplayFor(model => model.ChargePerKm)</td>
+
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Available)</td>
+            <td>@Html.DisplayFor(model => model.Available)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.Photo)</td>
+            <td> @Html.DisplayFor(model => model.Photo)</td>
+
+        </tr>
+
+
+    </table>
+    <p>
+        @Html.ActionLink("Edit", "Edit", null, new { id = Model.Carid }, new { @class = "btn btn-primary btn-large" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+</div>
+<div style="margin-left:450px">
+    <img src="@Url.Content(@Model.Photo)">
+
+</div>
+

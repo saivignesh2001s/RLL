@@ -75,21 +75,21 @@ namespace DAL
                 int km = Convert.ToInt32(kms);
                 charge = Convert.ToInt32(c.ChargePerKm) * km;
                 string typ = c.CarType;
-                int type = 0;
+                double type = 0;
                 switch (typ)
                 {
                     case "Luxury":
-                        type = 5;
+                        type = 0.5;
                         break;
 
                     case "SUV":
-                        type = 4;
+                        type = 0.4;
                         break;
                     case "Suden":
-                        type = 3;
+                        type = 0.3;
                         break;
                     case "Compact":
-                        type = 2;
+                        type = 0.2;
                         break;
                 }
                 charge = charge * type;

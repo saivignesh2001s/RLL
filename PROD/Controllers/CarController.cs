@@ -123,7 +123,7 @@ namespace PROD.Controllers
                 cd.Carname = c.Carname;
                 cd.PerDayCharge = c.PerDayCharge;
                 cd.ChargePerKm = c.ChargePerKm;
-                cd.CarType = c.CarType;
+                cd.CarType = Request.Form["CarType"];
                 cd.Available = c.Available;
                 string k = "~/images/";
                 cd.Photo = k+c.Photo;

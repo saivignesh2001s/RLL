@@ -4,19 +4,25 @@
     ViewBag.Title = "AdminLogin";
 }
 
-<h2>AdminLogin</h2>
 
+<center><h2 >AdminLogin</h2></center>
 
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div style="width:300px;float:left">
-        <img src="@Url.Content("~/images/admin.jpg")">
-    </div>
-    <div style="width:500px;float:right;text-align:left">
-        <div class="form-horizontal">
+    <style>
+        body {
+            background-image: url(../images/bg3.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100%100%;
+        }
+    </style>
+    
+    <div >
+        <div class="form-horizontal" style="margin-left:400px">
 
 
             <hr />
@@ -39,7 +45,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="AdminLogin" class="btn btn-danger" />
+                    <input type="submit" value="AdminLogin" class="btn btn-success" />
                     <p style="color:red">@ViewBag.Message</p>
                 </div>
             </div>
@@ -47,14 +53,14 @@
 
     </div>
 
-        }
-    
+}
 
 
-    @*<div>
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-large" })
-        </div>*@
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@*<div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-large" })
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

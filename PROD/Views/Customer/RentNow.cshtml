@@ -4,7 +4,7 @@
     ViewBag.Title = "RentNow";
 }
 
-<h2>RentNow</h2>
+<h2>Rent Now</h2>
 <div style="float:left;text-align:left;width:700px">
 
     @using (Html.BeginForm())
@@ -12,7 +12,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>CARRENT</h4>
+            
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -75,7 +75,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Rent" class="btn btn-primary" />
                 </div>
             </div>
         </div>

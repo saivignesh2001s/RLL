@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CarrentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="Username" />
@@ -21,7 +21,7 @@
           <Property Name="CarType" Type="nvarchar" MaxLength="40" />
           <Property Name="PerDayCharge" Type="int" />
           <Property Name="ChargePerKm" Type="int" />
-          <Property Name="Available" Type="nchar" MaxLength="10" />
+          <Property Name="Available" Type="varchar" MaxLength="50" />
           <Property Name="Photo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CarRent">
@@ -33,9 +33,9 @@
           <Property Name="CustomerId" Type="int" />
           <Property Name="RentOrderDate" Type="date" />
           <Property Name="OdoReading" Type="int" />
-          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnDate" Type="date" />
           <Property Name="ReturnOdoReading" Type="int" />
-          <Property Name="Licensenumber" Type="nchar" MaxLength="15" />
+          <Property Name="Licensenumber" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -71,7 +71,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarRentalModelStoreContainer">
+        <EntityContainer Name="CarrentalModelStoreContainer">
           <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarRent" EntityType="Self.CarRent" Schema="dbo" store:Type="Tables" />
@@ -85,10 +85,11 @@
             <End Role="CarRent" EntitySet="CarRent" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CarrentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="Username" />
@@ -105,9 +106,9 @@
           <Property Name="CarType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="PerDayCharge" Type="Int32" />
           <Property Name="ChargePerKm" Type="Int32" />
-          <NavigationProperty Name="CarRents" Relationship="Self.fk_rentcar" FromRole="Car" ToRole="CarRent" />
-          <Property Name="Available" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Available" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CarRents" Relationship="Self.fk_rentcar" FromRole="Car" ToRole="CarRent" />
         </EntityType>
         <EntityType Name="CarRent">
           <Key>
@@ -118,11 +119,11 @@
           <Property Name="CustomerId" Type="Int32" />
           <Property Name="RentOrderDate" Type="DateTime" Precision="0" />
           <Property Name="OdoReading" Type="Int32" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+          <Property Name="ReturnOdoReading" Type="Int32" />
+          <Property Name="Licensenumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Car" Relationship="Self.fk_rentcar" FromRole="CarRent" ToRole="Car" />
           <NavigationProperty Name="Customer" Relationship="Self.fk_rentCustomer" FromRole="CarRent" ToRole="Customer" />
-          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="ReturnOdoReading" Type="Int32" />
-          <Property Name="Licensenumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -178,9 +179,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarRentalModelStoreContainer" CdmEntityContainer="CarRentalEntities">
+        <EntityContainerMapping StorageEntityContainer="CarrentalModelStoreContainer" CdmEntityContainer="CarRentalEntities">
           <EntitySetMapping Name="admins">
-            <EntityTypeMapping TypeName="CarRentalModel.admin">
+            <EntityTypeMapping TypeName="CarrentalModel.admin">
               <MappingFragment StoreEntitySet="admin">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -188,34 +189,34 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="CarRentalModel.Car">
+            <EntityTypeMapping TypeName="CarrentalModel.Car">
               <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="Available" ColumnName="Available" />
                 <ScalarProperty Name="Carid" ColumnName="Carid" />
                 <ScalarProperty Name="Carname" ColumnName="Carname" />
                 <ScalarProperty Name="CarType" ColumnName="CarType" />
                 <ScalarProperty Name="PerDayCharge" ColumnName="PerDayCharge" />
                 <ScalarProperty Name="ChargePerKm" ColumnName="ChargePerKm" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CarRents">
-            <EntityTypeMapping TypeName="CarRentalModel.CarRent">
+            <EntityTypeMapping TypeName="CarrentalModel.CarRent">
               <MappingFragment StoreEntitySet="CarRent">
-                <ScalarProperty Name="Licensenumber" ColumnName="Licensenumber" />
-                <ScalarProperty Name="ReturnOdoReading" ColumnName="ReturnOdoReading" />
-                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="RentId" ColumnName="RentId" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="RentOrderDate" ColumnName="RentOrderDate" />
                 <ScalarProperty Name="OdoReading" ColumnName="OdoReading" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="ReturnOdoReading" ColumnName="ReturnOdoReading" />
+                <ScalarProperty Name="Licensenumber" ColumnName="Licensenumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="CarRentalModel.Customer">
+            <EntityTypeMapping TypeName="CarrentalModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Customerid" ColumnName="Customerid" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />

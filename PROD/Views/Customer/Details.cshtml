@@ -9,49 +9,48 @@
 
 <table class="table">
     <tr>
-    <td>
-        @Html.DisplayNameFor(model => model.Customerid)
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.Customerid)
-    </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Customerid)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Customerid)
+        </td>
     </tr>
     <tr>
-    <td>
-        @Html.DisplayNameFor(model => model.CustomerName)
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.CustomerName)
-    </td>
+        <td>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CustomerName)
+        </td>
     </tr>
     <tr>
-    <td>
-        @Html.DisplayNameFor(model => model.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.Email)
-    </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Email)
+        </td>
     </tr>
     <tr>
-    <td>
-        @Html.DisplayNameFor(model => model.Password)
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.Password)
-    </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Password)
+        </td>
     </tr>
     <tr>
-    <td>
-        @Html.DisplayNameFor(model => model.LoyaltyPoints)
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.LoyaltyPoints)
-    </td>
+        <td>
+            @Html.DisplayNameFor(model => model.LoyaltyPoints)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LoyaltyPoints)
+        </td>
     </tr>
-    <tr style="align-content:center">
-        @Html.ActionLink("Edit", "Edit", new {id=Model.Customerid}, new { @class = "btn btn-primary" })
-    </tr>
-
-   
-
+    
 </table>
+<p>
+    @Html.ActionLink("Search", "Search", null, new { @class = "btn btn-primary btn-large" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customerid }, new { @class = "btn btn-primary" })
+</p>

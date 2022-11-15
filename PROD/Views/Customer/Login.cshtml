@@ -10,15 +10,20 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+<style>
+    body {
+        background-image: url(../images/bg7.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%100%;
+    }
+</style>
 <div class="form-horizontal">
 
     <hr />
 
-    <div style="width:300px;float:left">
-        <img src="@Url.Content("~/images/Customer.jpg")">
-    </div>
-    <div style="width:500px;float:right;text-align:left">
+    
+    
         <div class="form-horizontal">
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -53,7 +58,7 @@
             
         </div>
     </div>
-        </div>
+        
     </div>
     }
 

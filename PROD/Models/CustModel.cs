@@ -14,18 +14,20 @@ namespace PROD.Models
             get;
             set;
         }
+        [Required]
         public string CustomerName
         {
             get;
             set;
         }
-
+        [Required]
         [DataType(DataType.EmailAddress)] 
         public string Email
         {
             get;
             set;
         }
+        [Required]
         [DataType(DataType.Password)]
         [RegularExpression(@"(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "Password should contain 8 characters,one uppercase,one lowercase,one special characters atleast")]
         public string Password
@@ -33,14 +35,16 @@ namespace PROD.Models
             get;
             set;
         }
+        [Required]
         [NotMapped] // Does not effect with your database
         [Compare("Password")]
         [DataType(DataType.Password)]
-        public string CheckPassword
+        public string ConfirmPassword
         {
             get;
             set;
         }
+        [Required]
         public int LoyaltyPoints
         {
             get;

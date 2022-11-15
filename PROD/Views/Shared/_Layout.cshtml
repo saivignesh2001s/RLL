@@ -25,52 +25,50 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Carly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Car Rental Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Admin", "AdminLogin", "Car")</li>
                     <li>@Html.ActionLink("Customer", "Login", "Customer")</li>
+
                     
-                    <li margin-left:900px>
                         @if (Session["u"] != null)
                         {
 
+                            <li>@Html.ActionLink("Logout", "preventBack", "Car")</li>
 
-                            @Html.ActionLink("Logout", "preventBack", "Car")
                             <script type="text/javascript">
-                                function preventBack() { window.history.forward(); }
-                                setTimeout("preventBack()", 0);
-                                window.onunload = function () { null };
+                            function preventBack() { window.history.forward(); }
+                            setTimeout("preventBack()", 0);
+                            window.onunload = function () { null };
                             </script>
 
-                        }
-                        @if (Session["u1"] != null)
-                        {
-
-
+                    }
+                    @if (Session["u1"] != null)
+                    {
+                        <li>
                             @Html.ActionLink("Logout", "preventBack", "Customer")
-                            <script type="text/javascript">
-                                function preventBack() { window.history.forward(); }
-                                setTimeout("preventBack()", 0);
-                                window.onunload = function () { null };
-                            </script>
-
-                        }
-                    </li>
-                        
-                    
+                        </li>
+                        <li>
+                            @Html.ActionLink("Profile", "Details", "Customer")
+                        </li>
+                        <script type="text/javascript">
+                            function preventBack() { window.history.forward(); }
+                            setTimeout("preventBack()", 0);
+                            window.onunload = function () { null };
+                        </script>
+                    }
                 </ul>
+                
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p style="color:white">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")
